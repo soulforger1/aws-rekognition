@@ -2,10 +2,10 @@ import React from "react";
 import { ScreenContainer } from ".";
 import { Text } from "../components";
 
-export const HomeScreen = () => {
+export const SignUp = () => {
   return (
     <ScreenContainer>
-      <Text fontSize="32">Home Screen</Text>
+      <Text fontSize="32">Sign up</Text>
     </ScreenContainer>
   );
 };

@@ -1,0 +1,48 @@
+@for $i from 1 through 100 {
+    .h-#{$i}-vh {
+        height: $i + vh;
+    }
+    .w-#{$i}-vw {
+        width: $i + vw;
+    }
+    .h-#{$i}-vw {
+        height: $i + vw;
+    }
+    .w-#{$i}-vh {
+        width: $i + vh;
+    }
+}
+
+@for $i from 0 through 100 {
+    .pa-#{$i} {
+        padding: $i + vw;
+    }
+    .ph-#{$i} {
+        padding-left: $i + vw;
+        padding-right: $i + vw;
+    }
+    .pl-#{$i} {
+        padding-left: $i + vw;
+    }
+    .pt-#{$i} {
+        padding-top: $i + vw;
+    }
+    .pb-#{$i} {
+        padding-bottom: $i + vw;
+    }
+    .ma-#{$i} {
+        margin: $i + vw;
+    }
+    .mt-#{$i} {
+        margin-top: $i + vw;
+    }
+    .ml-#{$i} {
+        margin-left: $i + vw;
+    }
+    .mr-#{$i} {
+        margin-right: $i + vw;
+    }
+    .mb-#{$i} {
+        margin-bottom: $i + vw;
+    }
+}

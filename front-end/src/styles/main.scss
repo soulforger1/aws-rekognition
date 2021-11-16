@@ -1,102 +1,14 @@
 @import "./flex.scss";
-@import "./button.scss";
+@import "./components.scss";
 @import "./variables.scss";
-
-@function pow($base, $exp) {
-  $res: 1;
-  @for $i from 1 through $exp {
-    $res: $res * $base;
-  }
-  @return $res;
-}
-@for $i from 1 through 100 {
-  .fs-#{$i} {
-    font-size: $i + px;
-  }
-  .lh-#{$i} {
-    line-height: $i + px;
-  }
-  .ls-#{$i} {
-    letter-spacing: $i + px;
-  }
-  .h-#{$i} {
-    height: $i + vh;
-  }
-  .h2-#{$i} {
-    height: 10 * $i + px;
-  }
-  .w-#{$i} {
-    width: $i + vw;
-  }
-  .w2-#{$i} {
-    width: 10 * $i + px;
-  }
-}
-
-@for $i from 0 through 100 {
-  .pa-#{$i} {
-    padding: 10 * $i + px;
-  }
-  .ph-#{$i} {
-    padding-left: 10 * $i + px;
-    padding-right: 10 * $i + px;
-  }
-  .pl-#{$i} {
-    padding-left: 10 * $i + px;
-  }
-  .pt-#{$i} {
-    padding-top: 10 * $i + px;
-  }
-  .pb-#{$i} {
-    padding-bottom: 10 * $i + px;
-  }
-  .ma-#{$i} {
-    margin: 10 * $i + px;
-  }
-  .mt-#{$i} {
-    margin-top: 10 * $i + px;
-  }
-  .ml-#{$i} {
-    margin-left: 10 * $i + px;
-  }
-  .mr-#{$i} {
-    margin-right: $i * 10 + px;
-  }
-  .mb-#{$i} {
-    margin-bottom: 10 * $i + px;
-  }
-  .bx-sh-#{$i} {
-    box-shadow: 0px 0px $i + px 0px black;
-  }
-  .opacity-#{$i} {
-    opacity: $i / 10;
-  }
-  .r-#{$i} {
-    right: $i * 10px;
-  }
-  .l-#{$i} {
-    left: $i * 10px;
-  }
-  .t-#{$i} {
-    top: $i * 10px;
-  }
-  .b-#{$i} {
-    bottom: $i * 10px;
-  }
-  .l2-#{$i} {
-    left: $i + vw;
-  }
-  .r2-#{$i} {
-    right: $i + vw;
-  }
-  .bottom2-#{$i} {
-    bottom: $i + vw;
-  }
-  .top2-#{$i} {
-    top: $i + vw;
-  }
-}
+@import "./spacing.scss";
+@import "./typography.scss";
 
 body {
-    margin: 0;
+  margin: 0;
+  background-color: #f5f5fa;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
 }
