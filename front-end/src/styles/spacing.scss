@@ -15,34 +15,38 @@
 
 @for $i from 0 through 100 {
     .pa-#{$i} {
-        padding: $i + vw;
+        padding: $i + px;
     }
     .ph-#{$i} {
-        padding-left: $i + vw;
-        padding-right: $i + vw;
+        padding-left: $i + px;
+        padding-right: $i + px;
     }
     .pl-#{$i} {
-        padding-left: $i + vw;
+        padding-left: $i + px;
     }
     .pt-#{$i} {
-        padding-top: $i + vw;
+        padding-top: $i + px;
     }
     .pb-#{$i} {
-        padding-bottom: $i + vw;
+        padding-bottom: $i + px;
+    }
+    .pv-#{$i} {
+        padding-top: $i + px;
+        padding-bottom: $i + px;
     }
     .ma-#{$i} {
-        margin: $i + vw;
+        margin: $i + px;
     }
     .mt-#{$i} {
-        margin-top: $i + vw;
+        margin-top: $i + px;
     }
     .ml-#{$i} {
-        margin-left: $i + vw;
+        margin-left: $i + px;
     }
     .mr-#{$i} {
-        margin-right: $i + vw;
+        margin-right: $i + px;
     }
     .mb-#{$i} {
-        margin-bottom: $i + vw;
+        margin-bottom: $i + px;
     }
 }

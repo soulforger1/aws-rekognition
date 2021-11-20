@@ -1,5 +1,6 @@
 export * from "./home-screen";
 export * from "./sign-up-screen";
+export * from "./sign-in-screen";
 
 type Props = {
   className?: string;

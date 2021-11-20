@@ -11,7 +11,7 @@ const poolData = {
 };
 const userPool: any = new CognitoUserPool(poolData);
 
-export const Auth = () => {
+export const useAuth = () => {
   const [cognitoUser, setCognitoUser] = useState<any>({ Pool: userPool });
   const [userData, setUserData] = useState({});
 
@@ -64,7 +64,7 @@ export const Auth = () => {
     });
   };
 
-  const Verification = ({ code }: { code: string }) => {
+  const verify = ({ code }: { code: string }) => {
     cognitoUser.confirmRegistration(code, true, (err: any, result: any) => {
       if (err) {
         alert(err.message || JSON.stringify(err));
@@ -74,5 +74,17 @@ export const Auth = () => {
     });
   };
 
-  return { signUp, signIn, userData, Verification };
+  const logout = async () => {
+    try {
+      const cognitoUser = userPool.getCurrentUser();
+      if (cognitoUser !== null) {
+        await cognitoUser.signOut();
+      }
+      return;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return { signUp, signIn, userData, verify, logout };
 };
