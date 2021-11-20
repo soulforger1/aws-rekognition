@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ColorType } from "../../theme/colors";
+import { Text } from ".";
 
 type inputType = {
   placeholder?: string;
@@ -27,7 +28,13 @@ type inputType = {
   inputEl?: React.Ref<any>;
 };
 
-export const FileInput = ({ onFileSelect }: { onFileSelect: any }) => {
+export const FileInput = ({
+  onFileSelect,
+  label,
+}: {
+  onFileSelect: any;
+  label?: string;
+}) => {
   const [selectedFile, setSelectedFile] = useState(undefined);
   const inputEl = useRef<any>(null);
 
@@ -40,7 +47,12 @@ export const FileInput = ({ onFileSelect }: { onFileSelect: any }) => {
   }, [selectedFile]);
 
   return (
-    <label className="w-20-vw h-20-vw image" ref={inputEl}>
+    <label className="w-20-vw h-20-vw image pointer" ref={inputEl}>
+      {!selectedFile && (
+        <Text className="z-1" fontSize="24">
+          {label}
+        </Text>
+      )}
       <Input
         onChange={(e) => {
           onFileSelect(e.target.files[0]);
@@ -49,6 +61,7 @@ export const FileInput = ({ onFileSelect }: { onFileSelect: any }) => {
         type="file"
         accept="image/*"
         placeholder="hello"
+        className="z-2"
       />
     </label>
   );

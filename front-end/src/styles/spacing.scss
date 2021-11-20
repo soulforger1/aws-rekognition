@@ -49,4 +49,16 @@
     .mb-#{$i} {
         margin-bottom: $i + px;
     }
+    .top-#{$i} {
+        top: $i + px;
+    }
+    .bottom-#{$i} {
+        bottom: $i + px;
+    }
+    .left-#{$i} {
+        left: $i + px;
+    }
+    .right-#{$i} {
+        right: $i + px;
+    }
 }
