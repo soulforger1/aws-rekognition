@@ -28,11 +28,11 @@ export const useAuth = () => {
   }) => {
     userPool.signUp(email, password, null, null, (err: any, result: any) => {
       if (err) {
-        alert(err.message || JSON.stringify(err));
-        return;
+        throw err.message || JSON.stringify(err);
       }
 
       setCognitoUser(result.user);
+      return;
     });
   };
 
@@ -52,14 +52,13 @@ export const useAuth = () => {
       Pool: userPool,
     });
 
-    userInfo.authenticateUser(authenticationDetails, {
+    return userInfo.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
-        const accessToken = result.getAccessToken().getJwtToken();
-        console.log(accessToken);
+        return result.getAccessToken().getJwtToken();
       },
 
-      onFailure: function (err) {
-        alert(err.message || JSON.stringify(err));
+      onFailure: (err) => {
+        throw err.message || JSON.stringify(err);
       },
     });
   };
@@ -67,8 +66,7 @@ export const useAuth = () => {
   const verify = ({ code }: { code: string }) => {
     cognitoUser.confirmRegistration(code, true, (err: any, result: any) => {
       if (err) {
-        alert(err.message || JSON.stringify(err));
-        return;
+        throw err.message || JSON.stringify(err);
       }
       console.log("call result: " + result);
     });

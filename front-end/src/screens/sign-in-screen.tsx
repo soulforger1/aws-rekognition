@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { ScreenContainer } from ".";
 import { useAuth } from "../aws/auth";
 import { Button, Input, Text } from "../components";
@@ -7,12 +8,16 @@ export const SignIn = () => {
   const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigate();
 
   const submit = async () => {
     try {
-      await signIn({ email, password });
+      const res = await signIn({ email, password });
+      console.log(res);
+      navigation("/");
     } catch (err) {
-      console.error(err);
+      console.log(err);
+      alert(err);
     }
   };
 
@@ -34,8 +39,21 @@ export const SignIn = () => {
         onChange={(e: any) => setPassword(e.target.value)}
       />
       <Button className="pv-14 ph-30" onClick={submit}>
-        <Text fontSize="24">Submit</Text>
+        <Text fontSize="24">Log in</Text>
       </Button>
+
+      <div className="flex align-center mt-10">
+        <Text fontSize="24">Don't have account?</Text>
+        <Button
+          className="pv-14 ph-30"
+          type="text"
+          onClick={() => navigation("/signup")}
+        >
+          <Text fontSize="24" color="primary">
+            sign up
+          </Text>
+        </Button>
+      </div>
     </ScreenContainer>
   );
 };

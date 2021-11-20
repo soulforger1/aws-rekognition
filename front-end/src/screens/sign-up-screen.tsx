@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { ScreenContainer } from ".";
 import { useAuth } from "../aws/auth";
 import { Button, Input, Text } from "../components";
@@ -16,13 +17,14 @@ const GetEmailAndPassword = ({ setCheckCode }: { setCheckCode: any }) => {
   const { signUp } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigate();
 
   const submit = async () => {
     try {
       await signUp({ email, password });
       setCheckCode(true);
     } catch (err) {
-      console.error(err);
+      alert(err);
     }
   };
 
@@ -44,8 +46,21 @@ const GetEmailAndPassword = ({ setCheckCode }: { setCheckCode: any }) => {
         onChange={(e: any) => setPassword(e.target.value)}
       />
       <Button className="pv-14 ph-30" onClick={submit}>
-        <Text fontSize="24">Submit</Text>
+        <Text fontSize="24">Create</Text>
       </Button>
+
+      <div className="flex align-center mt-10">
+        <Text fontSize="24">Already have account?</Text>
+        <Button
+          className="pv-14 ph-30"
+          type="text"
+          onClick={() => navigation("/signin")}
+        >
+          <Text fontSize="24" color="primary">
+            sign in
+          </Text>
+        </Button>
+      </div>
     </ScreenContainer>
   );
 };
@@ -53,12 +68,14 @@ const GetEmailAndPassword = ({ setCheckCode }: { setCheckCode: any }) => {
 const CheckVerificationCode = () => {
   const { verify } = useAuth();
   const [code, setCode] = useState("");
+  const navigation = useNavigate();
 
   const check = async () => {
     try {
       await verify({ code });
+      navigation("/");
     } catch (err) {
-      console.error(err);
+      alert(err);
     }
   };
 
