@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { ScreenContainer } from ".";
 import { Button, Input, Text } from "../components";
+import { AuthContext } from "../provider/authContext";
 
 export const SignUp = () => {
   const [checkCode, setCheckCode] = useState(false);
@@ -13,12 +14,14 @@ export const SignUp = () => {
 };
 
 const GetEmailAndPassword = ({ setCheckCode }: { setCheckCode: any }) => {
+  const { signUp } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigate();
 
   const submit = async () => {
     try {
+      await signUp({ email, password });
       setCheckCode(true);
     } catch (err) {
       alert(err);
@@ -63,11 +66,13 @@ const GetEmailAndPassword = ({ setCheckCode }: { setCheckCode: any }) => {
 };
 
 const CheckVerificationCode = () => {
+  const { verifyUser } = useContext(AuthContext);
   const [code, setCode] = useState("");
   const navigation = useNavigate();
 
   const check = async () => {
     try {
+      await verifyUser({ code });
       navigation("/");
     } catch (err) {
       alert(err);
