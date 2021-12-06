@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ScreenContainer } from ".";
 import { Button, FileInput, Text } from "../components";
 import { useNavigate } from "react-router-dom";
@@ -7,12 +7,9 @@ import { Loader } from "../components/loader";
 import { AuthContext } from "../provider/authContext";
 
 export const HomeScreen = () => {
-  const { user } = useContext(AuthContext);
+  const { user }: any = useContext(AuthContext);
   const navigation = useNavigate();
 
-  const onPress = () => {
-    navigation("/signIn");
-  };
   return user ? (
     <ScreenContainer justifyContent="justify-between" className="flex-col">
       <Header />
@@ -21,7 +18,10 @@ export const HomeScreen = () => {
     </ScreenContainer>
   ) : (
     <ScreenContainer>
-      <Button className="pv-14 ph-30 mt-10 h-6-vh" onClick={onPress}>
+      <Button
+        className="pv-14 ph-30 mt-10 h-6-vh"
+        onClick={() => navigation("/signIn")}
+      >
         <Text fontSize="24">Sign in</Text>
       </Button>
     </ScreenContainer>
@@ -34,17 +34,10 @@ const Content = () => {
 
   return (
     <div className="w-60-vw flex justify-between align-center">
-      <div className="relative flex-col align-center">
-        <FileInput
-          onFileSelect={(file: any) => setSelectedFile(file)}
-          label="Click to upload"
-        />
-        {selectedFile && (
-          <Button className="absolute pv-20 ph-20 mt-10 bottom-1">
-            <Text fontSize="16">Upload to AWS</Text>
-          </Button>
-        )}
-      </div>
+      <FileInput
+        onFileSelect={(file: any) => setSelectedFile(file)}
+        label="Click to upload"
+      />
 
       {searching ? (
         <Loader />
@@ -61,7 +54,8 @@ const Content = () => {
 };
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout }: any = useContext(AuthContext);
+
   return (
     <div className="flex h-6-vh align-center w-80-vw justify-between mt-10">
       <Text fontSize="32">{`user : ${user.username}`}</Text>
